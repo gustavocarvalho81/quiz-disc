@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Análise de ponto de partida: Autoconhecimento</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+        
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            background: #0084ff;
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+        
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .message {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bot-message {
+            background: #f0f2f5;
+            padding: 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            margin-right: 20%;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+        
+        .user-message {
+            background: #0084ff;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            margin-left: 20%;
+            text-align: right;
+        }
+        
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            gap: 10px;
+        }
+        
+        input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: #0084ff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #0066cc;
+        }
+        
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .typing-text {
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 15px;
+            background-color: #333;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Análise de ponto de partida: Autoconhecimento 🤖</h2>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+        </div>
+        <div class="chat-input">
+            <input type="text" 
+                   id="userInput" 
+                   placeholder="Digite sua resposta..." 
+                   onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()" id="sendButton">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        let session = {
+            current_question: 0,
+            responses: {},
+            conversation_history: [],
+            total_score: 0
+        };
+
+        function typeWriter(text, element, speed = 8) {
+            return new Promise(resolve => {
+                let i = 0;
+                element.innerHTML = '<span class="typing-text" style="white-space: pre-wrap;"></span><span class="typing-cursor"></span>';
+                const typingText = element.querySelector('.typing-text');
+                
+                function type() {
+                    if (i < text.length) {
+                        if (text[i] === '\n') {
+                            typingText.innerHTML += '<br>';
+                        } else {
+                            typingText.innerHTML += text[i];
+                        }
+                        i++;
+                        element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                        setTimeout(type, speed);
+                    } else {
+                        element.querySelector('.typing-cursor').remove();
+                        resolve();
+                    }
+                }
+                
+                type();
+            });
+        }
+
+        async function addMessage(message, isBot = true) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = isBot ? 'bot-message' : 'user-message';
+            
+            messageDiv.appendChild(contentDiv);
+            messagesDiv.appendChild(messageDiv);
+            
+            if (isBot) {
+                // Converter <br><br> em quebras de linha reais antes de iniciar a digitação
+                const formattedMessage = message.replace(/<br><br>/g, '\n\n');
+                await typeWriter(formattedMessage, contentDiv);
+            } else {
+                contentDiv.innerHTML = message;
+            }
+            
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        async function sendMessage(initialMessage = null) {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (!userData || !userData.name || !userData.email) {
+                window.location.href = '/';
+                return;
+            }
+
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            const message = initialMessage || userInput.value.trim();
+            
+            if (!message) return;
+            
+            if (!initialMessage) {
+                addMessage(message, false);
+                userInput.value = '';
+            }
+            
+            userInput.disabled = true;
+            sendButton.disabled = true;
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        session: session,
+                        user_data: userData
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Resposta não ok');
+                }
+                
+                const data = await response.json();
+                await addMessage(data.response, true);
+                session = data.session;
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                await addMessage('Desculpe, ocorreu um erro. Por favor, tente novamente.', true);
+            } finally {
+                userInput.disabled = false;
+                sendButton.disabled = false;
+                userInput.focus();
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !document.getElementById('userInput').disabled) {
+                sendMessage();
+            }
+        }
+
+        // Inicialização do chat
+        window.onload = function() {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (!userData || !userData.name || !userData.email) {
+                window.location.href = '/';
+            } else {
+                // Iniciar chat imediatamente
+                sendMessage("Olá! Gostaria de começar o teste DISC.");
+            }
+        };
+    </script>
+</body>
+</html>
