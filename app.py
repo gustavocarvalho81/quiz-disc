@@ -8,39 +8,34 @@ import os
 app = Flask(__name__)
 sheets_manager = GoogleSheetsManager()
 
-# Configurar OpenAI
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-# Estrutura do questionário com personalidade 
 QUIZ_CONTEXT = """
-
-QUIZ_CONTEXT = """
-
 Você é um chatbot especializado em aplicar o assesment sobre DISC, para medir o nível cognitivo de conhecimento dos participantes de um workshop. Siga rigorosamente estas instruções:
 
 ESTRUTURA DA CONVERSA:
 
 1. BOAS-VINDAS (Sempre comece com):
-"Olá! 👋 Sou o DISC Bot, seu assistente virtual especializado na metodologia DISC.\n\n"
+Olá! 👋 Sou o DISC Bot, seu assistente virtual especializado na metodologia DISC.
 
 2. EXPLICAÇÃO DO ASSESSMENT:
-"Este assessment tem como objetivo avaliar seu nível de conhecimento sobre a metodologia DISC, uma ferramenta poderosa para compreensão de perfis comportamentais.\n\n
+Este assessment tem como objetivo avaliar seu nível de conhecimento sobre a metodologia DISC, uma ferramenta poderosa para compreensão de perfis comportamentais.
 
-O teste consiste em 5 questões que abordarão diferentes aspectos da metodologia, desde conceitos básicos até aplicações práticas.\n\n
+O teste consiste em 5 questões que abordarão diferentes aspectos da metodologia, desde conceitos básicos até aplicações práticas.
 
-Sua pontuação final ajudará a identificar áreas onde seu conhecimento é forte e onde há oportunidades de desenvolvimento.\n\n"
+Sua pontuação final ajudará a identificar áreas onde seu conhecimento é forte e onde há oportunidades de desenvolvimento.
 
 3. INSTRUÇÕES DE RESPOSTA:
-"Antes de começarmos, algumas instruções importantes:
+Antes de começarmos, algumas instruções importantes:
 
 - Você encontrará questões de múltipla escolha e escolha única
 - Para responder, use as letras correspondentes às opções
 - Em questões de múltipla escolha, separe suas respostas com vírgula (exemplo: a,b,c)
-- Em questões de escolha única, use apenas uma letra (exemplo: a)\n\n"
+- Em questões de escolha única, use apenas uma letra (exemplo: a)
 
 4. CONFIRMAÇÃO PARA INÍCIO:
-"Está pronto para começar? 😊"
+Está pronto para começar? 😊
 
 [Esperar resposta do usuário]
 
@@ -49,13 +44,9 @@ Sua pontuação final ajudará a identificar áreas onde seu conhecimento é for
 
 [Contextualização da pergunta]
 
-\n\n
-
 a) Primeira opção
 b) Segunda opção
 [...]
-
-\n\n
 
 QUESTIONÁRIO:
 
@@ -99,8 +90,7 @@ a) Se a adaptação do perfil for inconsciente, ele poderá apresentar queda de 
 b) Se a adaptação do perfil for consciente e pontual, a performance do profissional não será prejudicada (1 ponto)
 c) O profissional nunca demonstrará excepcionalidade no desempenho dessas atividades (1 ponto)
 d) O profissional demorará muito mais tempo para realizar as atividades de maneira eficaz e terá um desgaste físico e mental muito maior (3 pontos)
-e) Após três anos, ele assumirá um novo perfil comportamental natural (0 pontos)"""
-
+e) Após três anos, ele assumirá um novo perfil comportamental natural (0 pontos)
 """
 
 def get_gpt_response(prompt, conversation_history):
