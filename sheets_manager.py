@@ -9,8 +9,8 @@ import json
 class GoogleSheetsManager:
     
     def __init__(self):
-    self.max_retries = 3
-    self.retry_delay = 2
+        self.max_retries = 3
+        self.retry_delay = 2
     
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
     try:
@@ -30,7 +30,7 @@ class GoogleSheetsManager:
         self.save_local_backup({"error": "Falha na inicialização", "details": str(e)})
         raise
 
-    
+
     def _execute_with_retry(self, func):
         """Executa uma função com tentativas múltiplas em caso de erro"""
         last_error = None
