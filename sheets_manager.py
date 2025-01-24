@@ -7,6 +7,7 @@ import time
 import json
 
 class GoogleSheetsManager:
+    
     def __init__(self):
     self.max_retries = 3
     self.retry_delay = 2
@@ -14,6 +15,9 @@ class GoogleSheetsManager:
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
     try:
         credentials_json = os.getenv('GOOGLE_CREDENTIALS')
+        if not credentials_json:
+            raise Exception("GOOGLE_CREDENTIALS environment variable not found")
+            
         credentials_info = json.loads(credentials_json)
         credentials = service_account.Credentials.from_service_account_info(
             credentials_info, scopes=SCOPES)
@@ -26,6 +30,7 @@ class GoogleSheetsManager:
         self.save_local_backup({"error": "Falha na inicialização", "details": str(e)})
         raise
 
+    
     def _execute_with_retry(self, func):
         """Executa uma função com tentativas múltiplas em caso de erro"""
         last_error = None
