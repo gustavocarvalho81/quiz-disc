@@ -1,9 +1,15 @@
 from flask import Flask, render_template, request, jsonify
 from sheets_manager import GoogleSheetsManager
 from dotenv import load_dotenv
-import openai
+
+from openai import OpenAI
 from datetime import datetime
 import os
+
+
+client = OpenAI()
+response = client.chat.completions.create(...)
+
 
 app = Flask(__name__)
 sheets_manager = GoogleSheetsManager()
