@@ -1,22 +1,14 @@
 from flask import Flask, render_template, request, jsonify
-from sheets_manager import GoogleSheetsManager
+from sheets_manager import GoogleSheetsManager 
 from dotenv import load_dotenv
 from openai import OpenAI
 from datetime import datetime
 import os
 
-
-client = OpenAI()
-response = client.chat.completions.create(
-    model="GPT-4o-mini",
-    messages=[{"role":"user", "content":prompt}]
-)
-
 app = Flask(__name__)
 sheets_manager = GoogleSheetsManager()
 
 load_dotenv()
-openai.api_key = os.getenv('OPENAI_API_KEY')
 
 QUIZ_CONTEXT = """
 Você é um chatbot especializado em aplicar o assesment sobre DISC, para medir o nível cognitivo de conhecimento dos participantes de um workshop. Siga rigorosamente estas instruções:
@@ -110,8 +102,9 @@ def get_gpt_response(prompt, conversation_history):
            {"role": "user", "content": prompt}
        ]
        
+       client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
        response = client.chat.completions.create(
-           model="GPT-4o-mini",
+           model="gpt-3.5-turbo-instruct",
            messages=messages,
            temperature=0.7,
            max_tokens=500
