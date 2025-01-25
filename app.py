@@ -95,24 +95,22 @@ Ao final do teste, você deve apenas enviar uma mensagem de agradecimento para o
 """
 
 def get_gpt_response(prompt, conversation_history):
-   try:
-       messages = [
-           {"role": "system", "content": QUIZ_CONTEXT},
-           *conversation_history,
-           {"role": "user", "content": prompt}
-       ]
-       
-       client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-       response = client.chat.completions.create(
-           model="gpt-3.5-turbo-instruct",
-           messages=messages,
-           temperature=0.7,
-           max_tokens=500
-       )
-       
-       return response.choices[0].message.content
-   except Exception as e:
-       return f"Erro ao processar resposta: {str(e)}"
+    try:
+        import openai
+        openai.api_key = os.getenv('OPENAI_API_KEY')
+        
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": QUIZ_CONTEXT},
+                *conversation_history,
+                {"role": "user", "content": prompt}
+            ]
+        )
+        return response.choices[0].message['content']
+    except Exception as e:
+        return f"Erro ao processar resposta: {str(e)}"
+    
 
 def calculate_scores(responses):
    print("\nCalculando pontuações para as respostas:", responses)
