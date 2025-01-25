@@ -7,8 +7,10 @@ import os
 
 
 client = OpenAI()
-response = client.chat.completions.create(...)
-
+response = client.chat.completions.create(
+    model="GPT-4o-mini",
+    messages=[{"role":"user", "content":prompt}]
+)
 
 app = Flask(__name__)
 sheets_manager = GoogleSheetsManager()
@@ -108,7 +110,7 @@ def get_gpt_response(prompt, conversation_history):
            {"role": "user", "content": prompt}
        ]
        
-       response = openai.ChatCompletion.create(
+       response = client.chat.completions.create(
            model="GPT-4o-mini",
            messages=messages,
            temperature=0.7,
