@@ -3,6 +3,7 @@ from sheets_manager import GoogleSheetsManager
 from dotenv import load_dotenv
 from datetime import datetime
 import os
+import
 
 app = Flask(__name__)
 sheets_manager = GoogleSheetsManager()
@@ -92,6 +93,8 @@ e) Após três anos, ele assumirá um novo perfil comportamental natural (0 pont
 
 Ao final do teste, você deve apenas enviar uma mensagem de agradecimento para o usuário.
 """
+import openai
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 def get_gpt_response(prompt, conversation_history):
     try:                        
