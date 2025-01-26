@@ -81,16 +81,16 @@ Escolha quantas opções você julgar como correta. Ao responder, separe a(s) al
 
 4. Sobre liderança: dominar o DISC pode fazer com que o líder diminua em até 80% os conflitos internos com seus liderados, uma vez que a metodologia permite que o líder adapte seu estilo conforme as necessidades dos membros da equipe.
 
-a) Verdadeiro (5 pontos)
-b) Falso (0 pontos)
+a) Verdadeiro
+b) Falso
 
 5. Sobre o padrão de perfil comportamental, quando uma pessoa passa muito tempo desempenhando atividades incoerentes ao perfil dela:
 
-a) Se a adaptação do perfil for inconsciente, ele poderá apresentar queda de performance (0 pontos)
-b) Se a adaptação do perfil for consciente e pontual, a performance do profissional não será prejudicada (1 ponto)
-c) O profissional nunca demonstrará excepcionalidade no desempenho dessas atividades (1 ponto)
-d) O profissional demorará muito mais tempo para realizar as atividades de maneira eficaz e terá um desgaste físico e mental muito maior (3 pontos)
-e) Após três anos, ele assumirá um novo perfil comportamental natural (0 pontos)
+a) Se a adaptação do perfil for inconsciente, ele poderá apresentar queda de performance
+b) Se a adaptação do perfil for consciente e pontual, a performance do profissional não será prejudicada
+c) O profissional nunca demonstrará excepcionalidade no desempenho dessas atividades
+d) O profissional demorará muito mais tempo para realizar as atividades de maneira eficaz e terá um desgaste físico e mental muito maior
+e) Após três anos, ele assumirá um novo perfil comportamental natural
 
 Escolha quantas opções você julgar como correta. Ao responder, separe a(s) alternativa(s) por vírgula.
 
