@@ -7,16 +7,20 @@ import time
 import json
 
 class GoogleSheetsManager:
+    
     def __init__(self):
-        # Configurações de retry
         self.max_retries = 3
-        self.retry_delay = 2  # segundos
+        self.retry_delay = 2
+        self.SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
         
-        # Configurar credenciais e serviço
-        SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
         try:
-            credentials = service_account.Credentials.from_service_account_file(
-                'credentials.json', scopes=SCOPES)
+            credentials_json = os.getenv('GOOGLE_CREDENTIALS')
+            if not credentials_json:
+                raise Exception("GOOGLE_CREDENTIALS environment variable not found")
+                
+            credentials_info = json.loads(credentials_json)
+            credentials = service_account.Credentials.from_service_account_info(
+                credentials_info, scopes=self.SCOPES)
             
             self.service = build('sheets', 'v4', credentials=credentials)
             self.spreadsheet_id = '18cxDWZAjzrpw21HpjRvLWOWKCe-oakhqm0ZTyduL_nk'
