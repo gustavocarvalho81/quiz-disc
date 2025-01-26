@@ -1,14 +1,17 @@
-from flask import Flask, render_template, request, jsonify
 from sheets_manager import GoogleSheetsManager 
 from dotenv import load_dotenv
 from openai import OpenAI
 from datetime import datetime
 import os
 
+from flask import Flask, render_template, request, jsonify
+
 app = Flask(__name__)
 sheets_manager = GoogleSheetsManager()
 
 load_dotenv()
+import openai
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 QUIZ_CONTEXT = """
 Você é um chatbot especializado em aplicar o assesment sobre DISC, para medir o nível cognitivo de conhecimento dos participantes de um workshop. Siga rigorosamente estas instruções:
@@ -95,19 +98,22 @@ Ao final do teste, você deve apenas enviar uma mensagem de agradecimento para o
 """
 
 def get_gpt_response(prompt, conversation_history):
-    try:
-        import openai
-        openai.api_key = os.getenv('OPENAI_API_KEY')
+    try:                        
+        messages=[
+            {"role": "system", "content": QUIZ_CONTEXT},
+            *conversation_history,
+            {"role": "user", "content": prompt}
+        ]
         
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": QUIZ_CONTEXT},
-                *conversation_history,
-                {"role": "user", "content": prompt}
-            ]
+             model="gpt-3.5-turbo",           
+             messages=messages,
+             temperature=0.7,
+             max_tokens=500    
         )
-        return response.choices[0].message['content']
+        
+        return response.choices[0].message.content
+        
     except Exception as e:
         return f"Erro ao processar resposta: {str(e)}"
     
@@ -214,6 +220,6 @@ def chat():
            'error': str(e),
            'message': 'Ocorreu um erro no processamento'
        }), 500
-
+       
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=10000)
