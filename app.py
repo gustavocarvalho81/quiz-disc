@@ -3,7 +3,7 @@ from sheets_manager import GoogleSheetsManager
 from dotenv import load_dotenv
 from datetime import datetime
 import os
-import
+import openai
 
 app = Flask(__name__)
 sheets_manager = GoogleSheetsManager()
