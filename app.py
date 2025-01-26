@@ -34,7 +34,7 @@ Antes de começarmos, algumas instruções importantes:
 - Em questões de escolha única, use apenas uma letra (exemplo: a)
 
 4. CONFIRMAÇÃO PARA INÍCIO:
-Está pronto para começar? 😊
+Está pronto para começar? Responda "sim" ou "não".😊
 
 [Esperar resposta do usuário]
 
@@ -49,47 +49,52 @@ b) Segunda opção
 
 QUESTIONÁRIO:
 
-1. [MÚLTIPLA ESCOLHA ✨] 
-Os profissionais que mais crescem profissionalmente, são aqueles que conhecem suas características individuais e tomam decisões pautadas em suas regras internas. Atualmente, é considerado um teste relevante para o autoconhecimento:
+1. Os profissionais que mais crescem profissionalmente são aqueles que conhecem suas características individuais e tomam decisões pautadas em suas regras internas. Atualmente, é/são considerado(s) teste(s) relevante(s) para o autoconhecimento:
 
-a) DISC (1.25 pontos)
-b) BigFive (1.25 pontos)
-c) MBTI (1.25 pontos)
-d) Valores Motivacionais (1.25 pontos)
-e) Nenhuma das anteriores (0 pontos)
+a) DISC
+b) BigFive
+c) MBTI
+d) Valores Motivacionais
+e) Nenhuma das anteriores
 
-2. [MÚLTIPLA ESCOLHA ✨]
-Ao dominar a metodologia DISC, o profissional é capaz de se destacar em:
+Escolha quantas opções você julgar como correta. Ao responder, separe a(s) alternativa(s) por vírgula.
 
-a) Comunicação e Gestão de Conflitos (1 ponto)
-b) Inteligência Emocional (1 ponto)
-c) Liderança e trabalho em equipe (1 ponto)
-d) Produtividade e autoconfiança (1 ponto)
-e) Vendas e Atendimento ao Cliente (1 ponto)
+2. Ao dominar a metodologia DISC, o profissional é capaz de se destacar em:
 
-3. [MÚLTIPLA ESCOLHA ✨]
-O DISC é uma metodologia que ajuda o profissional a identificar:
+a) Comunicação e Gestão de Conflitos 
+b) Inteligência Emocional 
+c) Liderança e trabalho em equipe 
+d) Produtividade e autoconfiança 
+e) Vendas e Atendimento ao Cliente
 
-a) Seus pontos fortes e áreas de melhoria comportamentais (2 pontos)
-b) O estilo de comunicação e tomada de decisão dos outros (2 pontos)
-c) A melhor forma de delegar tarefas dentro da equipe (1 ponto)
-d) O nível de motivação das outras pessoas na realização de atividades do dia a dia (-2 pontos)
-e) O nível de motivação pessoal para diferentes tipos de atividades (-2 pontos)
+Escolha quantas opções você julgar como correta. Ao responder, separe a(s) alternativa(s) por vírgula.
 
-4. [ESCOLHA ÚNICA ⭐]
-Sobre liderança: dominar o DISC pode fazer com que o líder diminua em até 80% os conflitos internos com seus liderados, uma vez que a metodologia permite que o líder adapte seu estilo conforme as necessidades dos membros da equipe.
+3. O DISC é uma metodologia que ajuda o profissional a identificar:
+
+a) Seus pontos fortes e pontos de fragilidade de comportamento 
+b) Seu estilo de comunicação e o estilo de comunicação das outras pessoas
+c) Ajuda o líder a escolher a melhor forma de delegar tarefas para os diferentes liderados da equipe 
+d) O nível de motivação das outras pessoas na realização de atividades do dia a dia
+e) O nível de motivação pessoal para diferentes tipos de atividades
+
+Escolha quantas opções você julgar como correta. Ao responder, separe a(s) alternativa(s) por vírgula.
+
+4. Sobre liderança: dominar o DISC pode fazer com que o líder diminua em até 80% os conflitos internos com seus liderados, uma vez que a metodologia permite que o líder adapte seu estilo conforme as necessidades dos membros da equipe.
 
 a) Verdadeiro (5 pontos)
 b) Falso (0 pontos)
 
-5. [MÚLTIPLA ESCOLHA ✨]
-Sobre o padrão de perfil comportamental, quando uma pessoa passa muito tempo desempenhando atividades incoerentes ao perfil dela:
+5. Sobre o padrão de perfil comportamental, quando uma pessoa passa muito tempo desempenhando atividades incoerentes ao perfil dela:
 
 a) Se a adaptação do perfil for inconsciente, ele poderá apresentar queda de performance (0 pontos)
 b) Se a adaptação do perfil for consciente e pontual, a performance do profissional não será prejudicada (1 ponto)
 c) O profissional nunca demonstrará excepcionalidade no desempenho dessas atividades (1 ponto)
 d) O profissional demorará muito mais tempo para realizar as atividades de maneira eficaz e terá um desgaste físico e mental muito maior (3 pontos)
 e) Após três anos, ele assumirá um novo perfil comportamental natural (0 pontos)
+
+Escolha quantas opções você julgar como correta. Ao responder, separe a(s) alternativa(s) por vírgula.
+
+CONCLUSÃO:
 
 Ao final do teste, você deve apenas enviar uma mensagem de agradecimento para o usuário.
 """
