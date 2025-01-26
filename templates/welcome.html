@@ -1,98 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Workshop DISC - Assessment</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .gradient-background {
-            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-    </style>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Workshop DISC - Assessment</title>
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   <style>
+       .gradient-background {
+           background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+       }
+       
+       .glass-effect {
+           background: rgba(255, 255, 255, 0.25);
+           backdrop-filter: blur(4px);
+           -webkit-backdrop-filter: blur(4px);
+           border: 1px solid rgba(255, 255, 255, 0.18);
+       }
+
+       .container {
+           width: 95%;
+           padding: 10px;
+           margin: 0 auto;
+       }
+
+       @media (min-width: 768px) {
+           .container {
+               width: 90%;
+               max-width: 1200px;
+           }
+       }
+
+       @media (max-width: 480px) {
+           h1 {
+               font-size: 1.5rem !important;
+           }
+           
+           .glass-effect {
+               padding: 1rem !important;
+           }
+           
+           input, button {
+               font-size: 14px !important;
+           }
+       }
+   </style>
 </head>
 <body class="gradient-background min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-md mx-auto glass-effect rounded-lg p-8 shadow-2xl">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Bem-vindo ao Workshop de AutoConhecimento</h1>
-                <p class="text-gray-600">Assine a lista de presença antes de responder ao questionário</p>
-            </div>
+   <div class="container mx-auto px-4 py-8">
+       <div class="max-w-md mx-auto glass-effect rounded-lg p-8 shadow-2xl">
+           <div class="text-center mb-8">
+               <h1 class="text-3xl font-bold text-gray-800 mb-2">Bem-vindo ao Workshop de AutoConhecimento</h1>
+               <p class="text-gray-600">Assine a lista de presença antes de responder ao questionário</p>
+           </div>
 
-            <form id="userForm" class="space-y-6" onsubmit="return false;">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
-                    <input type="text" 
-                           id="name" 
-                           name="name" 
-                           required 
-                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
+           <form id="userForm" class="space-y-6" onsubmit="return false;">
+               <div>
+                   <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
+                   <input type="text" 
+                          id="name" 
+                          name="name" 
+                          required 
+                          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+               </div>
 
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
-                    <input type="email" 
-                           id="email" 
-                           name="email" 
-                           required 
-                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
+               <div>
+                   <label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
+                   <input type="email" 
+                          id="email" 
+                          name="email" 
+                          required 
+                          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+               </div>
 
-                <div>
-                    <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Empresa</label>
-                    <input type="text" 
-                           id="company" 
-                           name="company" 
-                           required 
-                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
+               <div>
+                   <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Empresa</label>
+                   <input type="text" 
+                          id="company" 
+                          name="company" 
+                          required 
+                          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+               </div>
 
-                <div class="pt-4">
-                    <button onclick="submitForm()" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-300 transform hover:scale-105">
-                        INICIAR MINHA PARTICIPAÇÃO
-                    </button>
-                </div>
-            </form>
+               <div class="pt-4">
+                   <button onclick="submitForm()" 
+                           class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-300 transform hover:scale-105">
+                       INICIAR MINHA PARTICIPAÇÃO
+                   </button>
+               </div>
+           </form>
 
-            <div class="mt-8 text-center text-sm text-gray-600">
-                <p>Sua assinatura na lista de presença só será computada após a finalização das respostas ao questionário</p>
-                
-            </div>
-        </div>
-    </div>
+           <div class="mt-8 text-center text-sm text-gray-600">
+               <p>Sua assinatura na lista de presença só será computada após a finalização das respostas ao questionário</p>
+           </div>
+       </div>
+   </div>
 
-    <script>
-        function submitForm() {
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const company = document.getElementById('company').value.trim();
-            
-            if (!name || !email || !company) {
-                alert('Por favor, preencha todos os campos.');
-                return;
-            }
-            
-            const userData = {
-                name: name,
-                email: email,
-                company: company
-            };
+   <script>
+       function submitForm() {
+           const name = document.getElementById('name').value.trim();
+           const email = document.getElementById('email').value.trim();
+           const company = document.getElementById('company').value.trim();
+           
+           if (!name || !email || !company) {
+               alert('Por favor, preencha todos os campos.');
+               return;
+           }
+           
+           const userData = {
+               name: name,
+               email: email,
+               company: company
+           };
 
-            localStorage.setItem('userData', JSON.stringify(userData));
-            console.log('Dados salvos:', userData);
-            
-            window.location.href = '/quiz';
-        }
+           localStorage.setItem('userData', JSON.stringify(userData));
+           window.location.href = '/quiz';
+       }
 
-        window.onload = function() {
-            localStorage.removeItem('userData');
-        }
-    </script>
+       window.onload = function() {
+           localStorage.removeItem('userData');
+       }
+   </script>
 </body>
 </html>
