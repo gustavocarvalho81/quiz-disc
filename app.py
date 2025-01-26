@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from sheets_manager import GoogleSheetsManager 
 from dotenv import load_dotenv
-from openai import OpenAI
 from datetime import datetime
 import os
 
@@ -95,12 +94,9 @@ Ao final do teste, você deve apenas enviar uma mensagem de agradecimento para o
 """
 
 def get_gpt_response(prompt, conversation_history):
-    try:
-        import openai
-        openai.api_key = os.getenv('OPENAI_API_KEY')
-        
+    try:                        
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-3.5-turbo",           
             messages=[
                 {"role": "system", "content": QUIZ_CONTEXT},
                 *conversation_history,
