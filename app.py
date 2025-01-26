@@ -99,7 +99,7 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 def get_gpt_response(prompt, conversation_history):
     try:                        
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",           
+            model="GPT-4o-mini",           
             messages=[
                 {"role": "system", "content": QUIZ_CONTEXT},
                 *conversation_history,
