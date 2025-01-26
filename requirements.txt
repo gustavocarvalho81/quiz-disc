@@ -1,5 +1,5 @@
 flask
-openai
+openai==1.60.1
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
